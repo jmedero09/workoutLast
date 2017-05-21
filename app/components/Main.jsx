@@ -5,6 +5,7 @@ import Dashboard from './Dashboard';
 import Navbar from './Navbar';
 import Workouts from './Workouts';
 import WorkoutDescription from './WorkoutDescription';
+import * as actions from '../actions';
 
 class Main extends Component {
   constructor(props) {

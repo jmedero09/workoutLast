@@ -15,13 +15,13 @@ module.exports = app => {
     })
   );
 
-  // app.use(
-  //   jwt({
-  //     secret: '12345'
-  //   }).unless({
-  //     path: ['/', '/auth/login', '/auth/register']
-  //   })
-  // );
+  app.use(
+    jwt({
+      secret: '12345'
+    }).unless({
+      path: ['/', '/auth/login', '/auth/register']
+    })
+  );
 
   app.use(morgan('combined'));
 };

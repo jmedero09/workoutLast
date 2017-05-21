@@ -6,7 +6,6 @@ import SetRepList from './SetRepsList';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 import { fields, reduxForm } from 'redux-form';
-
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -21,11 +20,7 @@ class Dashboard extends Component {
 
     dispatch(actions.createWorkout(name));
 
-    this.refs.addWorkout.value =" ";
-
-    withRouter(({ history }) => {
-      history.push('/workouts');
-    });
+    this.refs.addWorkout.value = ' ';
   }
   render() {
     const {
@@ -35,23 +30,23 @@ class Dashboard extends Component {
     } = this.props;
 
     return (
-          <div className="{small-12 columns text-center samll-centred} ">
-            <form onSubmit={this.handleSubmit}>
-              <input
-                required
-                minLength="4"
-                maxLength="15"
-                className="addExerciseField text-center"
-                type="text"
-                ref="addWorkout"
-                placeholder="Add a Workout"
-                {...exercise}
-              />
-              <button onClick={this.handleSave} className="button expanded">
-                Save Workout
-              </button>
-            </form>
-          </div>
+      <div className="{small-12 columns text-center samll-centred} ">
+        <form onSubmit={this.handleSubmit}>
+          <input
+            required
+            minLength="4"
+            maxLength="15"
+            className="addExerciseField text-center"
+            type="text"
+            ref="addWorkout"
+            placeholder="Add a Workout"
+            {...exercise}
+          />
+          <button onClick={this.handleSave} className="button expanded">
+            Save Workout
+          </button>
+        </form>
+      </div>
     );
   }
 }

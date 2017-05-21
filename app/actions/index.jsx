@@ -11,12 +11,19 @@ import moment from 'moment';
 //   };
 // };
 
+export const FETCH_WORKOUTS = workouts => {
+  return {
+    type: 'FETCH_WORKOUTS',
+    workouts
+  };
+};
+
 export function addExercise(name) {
   const exercises_config = {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': `bearer ${localStorage.getItem('id_token')}`
+      Authorization: `bearer ${localStorage.getItem('id_token')}`
     },
     body: `name=${name}`
   };
@@ -24,23 +31,23 @@ export function addExercise(name) {
   const workout_config = {
     method: 'POST',
     headers: {
-      'Authorization': `bearer ${localStorage.getItem('id_token')}`
+      Authorization: `bearer ${localStorage.getItem('id_token')}`
     }
   };
-
 
   return dispatch => {
     return fetch('http://localhost:8080/api/workouts', workout_config)
       .then(response => response.json())
       .then(response => {
-
-        return fetch(`http://localhost:8080/api/workouts/exercises/${response._id}`, exercises_config)
+        return fetch(
+          `http://localhost:8080/api/workouts/exercises/${response._id}`,
+          exercises_config
+        )
           .then(response => response.json())
           .then(response => {
             console.log('asslick', response);
           })
           .catch(err => new Error(err));
-
       })
       .catch(err => new Error(err));
   };
@@ -63,35 +70,58 @@ export function addExercise(name) {
 //   }
 // };
 
-export var createWorkout = name => {
-  return {
-    type: 'SAVE_WORKOUT',
-    name,
-    storedSessoin: [],
-    date: moment().format('MMM Do YYYY')
+// export var createWorkout = name => {
+//   return {
+//     type: 'SAVE_WORKOUT',
+//     name,
+//     storedSessoin: [],
+//     date: moment().format('MMM Do YYYY')
+//   };
+// };
+
+export const fetchWorkouts = () => {
+  const config = {
+    headers: {
+      Authorization: `bearer ${localStorage.getItem('id_token')}`
+    }
+  };
+  return dispatch => {
+    return fetch('http://localhost:8080/api/workouts', config)
+      .then(response =>
+        response.json().then(workouts => ({
+          workouts,
+          response
+        }))
+      )
+      .then(({ workouts, response }) => {
+        if (!response.ok) {
+          Promise.reject(workouts);
+        }
+        return dispatch(FETCH_WORKOUTS(workouts));
+      })
+      .catch(err => new Error(err));
   };
 };
 
-// export function createWorkout(name) {
-//   const config = {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-//     body: `name=${name}`
-//   };
+export function createWorkout(name) {
+  const config = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: `bearer ${localStorage.getItem('id_token')}`
+    },
+    body: `name=${name}`
+  };
 
-//   return dispatch => {
-//     return fetch('http://localhost:8080/api/workouts', config)
-//       .then(response => response.json())
-//       .then(response => {
-//         if (!response.ok) {
-//           Promise.reject(response);
-//         } else {
-//           Promise.resolve(response);
-//         }
-//       })
-//       .catch(err => new Error(err));
-//   };
-// }
+  return dispatch => {
+    return fetch('http://localhost:8080/api/workouts', config)
+      .then(response => response.json())
+      .then(response => {
+        Promise.resolve(response);
+      })
+      .catch(err => new Error(err));
+  };
+}
 
 export var addExerciseDetails = (id, weight, reps) => {
   return {
@@ -187,14 +217,13 @@ export function loginUser(creds) {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds));
     return fetch('http://localhost:8080/auth/login', config)
-      .then(response => response.json().then(user => ({
-        user,
-        response
-      })))
-      .then(({
-        user,
-        response
-      }) => {
+      .then(response =>
+        response.json().then(user => ({
+          user,
+          response
+        }))
+      )
+      .then(({ user, response }) => {
         if (!response.ok) {
           // If there was a problem, we want to
           // dispatch the error condition

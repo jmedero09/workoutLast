@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, IndexLink } from 'react-router-dom';
+import { fetchWorkouts } from '../actions';
 import { connect } from 'react-redux';
 import WorkoutTile from './WorkoutTile';
 
@@ -7,9 +8,13 @@ class Workouts extends Component {
   constructor(props) {
     super(props);
   }
+
+  componentDidMount() {
+    this.props.dispatch(fetchWorkouts());
+  }
+
   renderList() {
     return this.props.workouts.map((workout, index) => {
-      console.log(workout);
       return (
         <Link to={'description'} key={index}>
           <li key={index}>

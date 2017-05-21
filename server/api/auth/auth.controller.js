@@ -6,12 +6,8 @@ const jsonwebtoken = require('jsonwebtoken');
 
 const controller = {};
 
-
 controller.login = (req, res, next) => {
-  const {
-    username,
-    password,
-  } = req.body;
+  const { username, password } = req.body;
 
   User.findOne({ username }, (error, user) => {
     if (error) {
@@ -22,19 +18,17 @@ controller.login = (req, res, next) => {
       return next(new Error('User not found.'));
     }
 
-    user.validPassword(password, (passwordError) => {
+    user.validPassword(password, passwordError => {
       if (passwordError) {
         next(passwordError);
       } else {
-        const payload = {
-          id: user.id,
-          username: user.username,
-        };
-console.log(payload)
-        const token = jsonwebtoken.sign({
-          exp: Math.floor(Date.now() / 1000) + (60 * 60),
-          payload,
-        }, '12345');
+        const token = jsonwebtoken.sign(
+          {
+            id: user.id,
+            username: user.username
+          },
+          '12345'
+        );
 
         res.status(200).json({ token });
       }
@@ -48,26 +42,27 @@ controller.register = (req, res, next) => {
       if (err) {
         next(err);
       } else {
-        User.create({
-          username: req.body.username,
-          password: hashedPassword,
-        }, (error, user) => {
-          if (error) {
-            next(error);
-          } else {
-            res.status(201).json(user);
+        User.create(
+          {
+            username: req.body.username,
+            password: hashedPassword
+          },
+          (error, user) => {
+            if (error) {
+              next(error);
+            } else {
+              res.status(201).json(user);
+            }
           }
-        });
+        );
       }
     });
   });
 };
 
-
 controller.logout = (req, res, next) => {
   req.logout();
   next();
 };
-
 
 module.exports = controller;
