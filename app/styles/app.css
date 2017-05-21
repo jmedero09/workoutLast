@@ -1,0 +1,112 @@
+@import "base/variables";
+// foundation
+@import "base/foundation-settings";
+@import "foundation";
+@include foundation-everything;
+// Components
+body {
+    /*	background-image:url('http://cdn.wallpapersafari.com/1/68/uoJ4pq.jpg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover; */
+    background-color: white;
+}
+
+.savedTitle h1 {
+    padding-top: 10px;
+}
+
+.dash-header {
+    margin-top: 30px;
+}
+
+input[type="text"].addExerciseField {
+    width: 70%;
+    display: inline;
+    margin-bottom: 0px;
+}
+
+
+/*input[type="text"].addWeight{
+	width:50%;
+	display: inline;
+}
+input[type="text"].addReps{
+	width:50%;
+	display: inline;
+
+}*/
+
+.button {
+    background-color: #ed1b5c;
+    margin-top: 20px;
+}
+
+.button .expanded {
+    margin-right: 5px;
+    display: block;
+    width: 50%;
+}
+
+.logoImg {
+    padding-top: 35px;
+}
+
+.exercise-tile {
+    background-color: rgba(154, 154, 154, 0.08);
+    border-top: 1px solid #ed1b5c;
+    border-bottom: 1px solid #ed1b5c;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.savedTitle {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 5px;
+    background-color: rgba(154, 154, 154, 0.08);
+    border-top: 1px solid #ed1b5c;
+    border-bottom: 1px solid #ed1b5c;
+    padding: 20px 0;
+}
+
+.savedTitle p {
+    text-align: center;
+    font-size: 12px;
+}
+
+.savedTitle h1 {
+    font-size: 15px;
+}
+
+.login-container {
+    margin-top: 30%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border: 1px solid;
+    text-align: center;
+}
+
+.login-container p {
+    color: #fff;
+    font-weight: bolder;
+    text-align: center;
+    padding: 5px;
+}
+
+.textHelp {
+    color: red;
+    padding-top: 0px;
+}
+
+.hiddenButton {
+    display: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+a {
+    text-align: center;
+    display: block;
+}
