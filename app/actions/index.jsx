@@ -18,7 +18,7 @@ export const FETCH_WORKOUTS = workouts => {
   };
 };
 
-export function addExercise(name) {
+export function addExercise(name, id) {
   const exercises_config = {
     method: 'PUT',
     headers: {
@@ -28,28 +28,51 @@ export function addExercise(name) {
     body: `name=${name}`
   };
 
-  const workout_config = {
-    method: 'POST',
+  return dispatch => {
+    return fetch(
+      `http://localhost:8080/api/workouts/exercises/${id}`,
+      exercises_config
+    )
+      .then(response => response.json())
+      .then(response => {
+        console.log('asslick', response);
+      })
+      .catch(err => new Error(err));
+  };
+}
+
+export const FETCH_WORKOUT = workout => {
+  return {
+    type: 'FETCH_WORKOUT',
+    workout
+  };
+};
+
+export function fetchWorkout(id) {
+  const exercises_config = {
+    method: 'GET',
     headers: {
       Authorization: `bearer ${localStorage.getItem('id_token')}`
     }
   };
 
   return dispatch => {
-    return fetch('http://localhost:8080/api/workouts', workout_config)
-      .then(response => response.json())
-      .then(response => {
-        return fetch(
-          `http://localhost:8080/api/workouts/exercises/${response._id}`,
-          exercises_config
-        )
-          .then(response => response.json())
-          .then(response => {
-            console.log('asslick', response);
-          })
-          .catch(err => new Error(err));
+    return fetch(`http://localhost:8080/api/workouts/${id}`, exercises_config)
+      .then(response =>
+        response.json().then(workout => ({
+          workout,
+          response
+        }))
+      )
+      .then(({ workout, response }) => {
+        if (!response.ok) {
+          Promise.reject(workout);
+        }
+        return dispatch(FETCH_WORKOUT(workout));
       })
-      .catch(err => new Error(err));
+      .catch(err => {
+        console.log(err);
+      });
   };
 }
 

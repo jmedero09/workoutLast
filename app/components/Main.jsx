@@ -14,6 +14,7 @@ class Main extends Component {
   render() {
     const { dispatch, exercise } = this.props;
     const { isAuthenticated, errorMessage } = this.props.authReducer;
+
     return (
       <div className="row">
 

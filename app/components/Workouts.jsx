@@ -16,7 +16,7 @@ class Workouts extends Component {
   renderList() {
     return this.props.workouts.map((workout, index) => {
       return (
-        <Link to={'description'} key={index}>
+        <Link to={`/workout/${workout._id}`} key={index}>
           <li key={index}>
             <WorkoutTile name={workout.name} date={workout.date} />
           </li>

@@ -43,7 +43,7 @@ const exerciseReducer = (state = { exercises: [] }, action) => {
   }
 };
 
-const workoutReducer = (state = { workouts: [] }, action) => {
+const workoutReducer = (state = { workouts: [], workout: {} }, action) => {
   console.log('Action happened ' + action.type);
   switch (action.type) {
     case 'SAVE_WORKOUT':
@@ -60,6 +60,11 @@ const workoutReducer = (state = { workouts: [] }, action) => {
     case 'FETCH_WORKOUTS':
       return Object.assign({}, state, {
         workouts: [...action.workouts]
+      });
+
+    case 'FETCH_WORKOUT':
+      return Object.assign({}, state, {
+        workout: action.workout
       });
 
     default:

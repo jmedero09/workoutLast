@@ -5,61 +5,65 @@ import { AddExerciseDetailsReducer } from '../reducers/reducers';
 import SetRep from './SetReps';
 import ExerciseTileList from './Exercise-Tile-List';
 
-
 class WorkoutDescription extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-
+    this.renderWorkout = this.renderWorkout.bind(this);
+    this.state = {
+      workout: {}
+    };
   }
+
+  componentWillMount() {
+    this.props.dispatch(actions.fetchWorkout(this.props.match.params.id));
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-
-    var {
-      dispatch,
-      exercises
-    } = this.props;
-
-    var exerciseText = this.refs.addExercise.value;
-
-    var x = dispatch(actions.addExercise(exerciseText));
-    console.log(this.props);
+    const exerciseText = this.refs.addExercise.value;
+    const workout_id = this.props.match.params.id;
+    const { dispatch, exercises } = this.props;
+    dispatch(actions.addExercise(exerciseText, workout_id));
     this.refs.addExercise.value = '';
   }
-  render() {
-        const {
-      // fields: {
-      //   exercises,
-      //   weight,
-      //   reps
-      // },
-      handleSubmit,
-      isAuthenticated
-    } = this.props;
-    console.log('what an actual fuck', this.props.description);
-    let exercises = this.props.description.exercises.map((exercise, index) => {
-      let sets_reps = exercise.sets_reps.map(item => (
-        <SetRep
-          key={index}
-          set={++index}
-          weight={item.weight}
-          reps={item.reps}
-        />
-      ));
-      return (
-        <div key={index}>
-          <h1>{exercise.name}</h1>
-          {sets_reps}
-        </div>
-      );
-    });
 
+  renderWorkout() {
+    if (this.props.workout.hasOwnProperty('name')) {
+      console.log('workout bro');
+      console.log(this.props.workout);
+      if (this.props.workout.exercises) {
+        return this.props.workout.exercises.map((exercise, index) => {
+          let sets_reps = exercise.sets_reps && exercises.sets_reps.length
+            ? exercise.sets_reps.map(item => (
+                <SetRep
+                  key={index}
+                  set={++index}
+                  weight={item.weight}
+                  reps={item.reps}
+                />
+              ))
+            : [];
+          return (
+            <div key={index}>
+              <h1>{exercise.name}</h1>
+              {sets_reps}
+            </div>
+          );
+        });
+      }
+    }
+  }
+
+  render() {
+    console.log(this.props.workout);
     return (
       <div className="exercise-tile small-12 columns text-center">
-        <div>       
+        <div>
           <div className="row">
             <div className="columns samll-centred">
               <ExerciseTileList />
+              {this.renderWorkout()}
             </div>
             <div className="{small-12 columns text-center samll-centred} ">
               <form onSubmit={this.handleSubmit}>
@@ -71,20 +75,19 @@ class WorkoutDescription extends Component {
                   type="text"
                   ref="addExercise"
                   placeholder="Add an Exercise"
-                  {...exercises}
                 />
                 <button className="button expanded">Add Exercise</button>
               </form>
             </div>
           </div>
-      </div>
+        </div>
       </div>
     );
   }
 }
-var mapStateToProps = state => {
+const mapStateToProps = state => {
   return {
-    description: state.exerciseReducer
+    workout: state.workoutReducer.workout
   };
 };
 export default connect(mapStateToProps)(WorkoutDescription);

@@ -21,10 +21,10 @@ ReactDOM.render(
       <div>
         <Switch>
           <Main>
-            <Route path="/workouts" component={Workouts}>
-            </Route>
+            <Route path="/workouts" component={Workouts} />
             <Route path="/Dashboard" component={Dashboard} />
-            <Route path="/description" component={WorkoutDescription} />
+            <Route path="/workout/:id" component={WorkoutDescription} />
+
           </Main>
         </Switch>
       </div>
