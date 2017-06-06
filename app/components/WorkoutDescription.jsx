@@ -9,10 +9,6 @@ class WorkoutDescription extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderWorkout = this.renderWorkout.bind(this);
-    this.state = {
-      workout: {}
-    };
   }
 
   componentWillMount() {
@@ -28,42 +24,17 @@ class WorkoutDescription extends Component {
     this.refs.addExercise.value = '';
   }
 
-  renderWorkout() {
-    if (this.props.workout.hasOwnProperty('name')) {
-      console.log('workout bro');
-      console.log(this.props.workout);
-      if (this.props.workout.exercises) {
-        return this.props.workout.exercises.map((exercise, index) => {
-          let sets_reps = exercise.sets_reps && exercises.sets_reps.length
-            ? exercise.sets_reps.map(item => (
-                <SetRep
-                  key={index}
-                  set={++index}
-                  weight={item.weight}
-                  reps={item.reps}
-                />
-              ))
-            : [];
-          return (
-            <div key={index}>
-              <h1>{exercise.name}</h1>
-              {sets_reps}
-            </div>
-          );
-        });
-      }
-    }
-  }
-
   render() {
-    console.log(this.props.workout);
     return (
       <div className="exercise-tile small-12 columns text-center">
         <div>
           <div className="row">
             <div className="columns samll-centred">
-              <ExerciseTileList />
-              {this.renderWorkout()}
+
+              {this.props.workout &&
+                this.props.workout.exercises &&
+                <ExerciseTileList exercises={this.props.workout} />}
+
             </div>
             <div className="{small-12 columns text-center samll-centred} ">
               <form onSubmit={this.handleSubmit}>

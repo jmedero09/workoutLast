@@ -34,9 +34,7 @@ export function addExercise(name, id) {
       exercises_config
     )
       .then(response => response.json())
-      .then(response => {
-        console.log('asslick', response);
-      })
+      .then(response => {})
       .catch(err => new Error(err));
   };
 }
@@ -68,7 +66,8 @@ export function fetchWorkout(id) {
         if (!response.ok) {
           Promise.reject(workout);
         }
-        return dispatch(FETCH_WORKOUT(workout));
+        dispatch(FETCH_WORKOUT(workout));
+        Promise.resolve();
       })
       .catch(err => {
         console.log(err);

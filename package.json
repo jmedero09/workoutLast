@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon ./server/server.js"
   },
-  "author": "Aleksandar Grbic <agrbicpp@gmail.com> (https://codeyoufools.com)",
+  "author": "Jesus Medero",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^1.0.2",

@@ -7,30 +7,26 @@ class ExerciseTileList extends Component {
     super(props);
   }
 
-  renderList() {
-    return this.props.exercises.map((exercise, index) => {
-      return (
-        <li key={exercise.id}>
-          <ExerciseTile
-            title={exercise.name}
-            sets_reps={exercise.sets_reps}
-            exercise_id={exercise.id}
-          />
-        </li>
-      );
-    });
-  }
   render(props) {
+    console.log(this.props);
     return (
       <ul className="small-centered  small-12 columns text-center">
-        {this.renderList()}
+        {this.props.workout.exercises.map((exercise, index) => (
+          <li key={index}>
+            <ExerciseTile
+              name={exercise.name}
+              sets_reps={exercise.sets}
+              exercise_id={exercise._id}
+            />
+          </li>
+        ))}
       </ul>
     );
   }
 }
 const mapStateToProps = state => {
   return {
-    exercises: state.exerciseReducer.exercises
+    workout: state.workoutReducer.workout
   };
 };
 export default connect(mapStateToProps)(ExerciseTileList);

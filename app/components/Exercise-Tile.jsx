@@ -34,7 +34,7 @@ class ExerciseTile extends Component {
 
     return (
       <div className="exercise-tile small-12 columns small-centered">
-        <h1> {this.props.title} </h1>
+        <h1> {this.props.name} </h1>
         {this.props.sets_reps.map((detail, index) => {
           return (
             <SetReps
@@ -49,7 +49,6 @@ class ExerciseTile extends Component {
         <form onSubmit={this.handleSubmit} id={this.props.exercise_id}>
           <div className="small-4 columns small-centered">
             <label> Weight </label>
-            {' '}
             <input
               required
               maxLength={4}
@@ -58,12 +57,10 @@ class ExerciseTile extends Component {
               ref="weight"
               {...weight}
             />
-            {' '}
           </div>
 
           <div className="small-4 columns small-centered">
             <label> Reps </label>
-            {' '}
             <input
               required
               maxLength={2}

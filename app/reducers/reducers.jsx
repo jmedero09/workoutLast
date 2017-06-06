@@ -21,7 +21,7 @@ const exerciseReducer = (state = { exercises: [] }, action) => {
           {
             id: action.id,
             name: action.name,
-            sets_reps: []
+            sets: []
           }
         ]
       });
@@ -32,7 +32,7 @@ const exerciseReducer = (state = { exercises: [] }, action) => {
       });
 
       var state_update = Object.assign({}, state);
-      state_update.exercises[index].sets_reps.push({
+      state_update.exercises[index].sets.push({
         reps: action.reps,
         weight: action.weight
       });
@@ -44,7 +44,6 @@ const exerciseReducer = (state = { exercises: [] }, action) => {
 };
 
 const workoutReducer = (state = { workouts: [], workout: {} }, action) => {
-  console.log('Action happened ' + action.type);
   switch (action.type) {
     case 'SAVE_WORKOUT':
       return Object.assign({}, state, {
