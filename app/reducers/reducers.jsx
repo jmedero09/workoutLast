@@ -27,16 +27,17 @@ const exerciseReducer = (state = { exercises: [] }, action) => {
       });
 
     case 'ADD_EXERCISE_DETAILS':
-      const index = state.exercises.findIndex(function(exercise) {
-        return exercise.id === action.id;
-      });
+      console.log('Trying to update an exercise');
+    // const index = state.exercises.findIndex(function(exercise) {
+    //   return exercise.id === action.id;
+    // });
 
-      var state_update = Object.assign({}, state);
-      state_update.exercises[index].sets.push({
-        reps: action.reps,
-        weight: action.weight
-      });
-      return state_update;
+    // var state_update = Object.assign({}, state);
+    // state_update.exercises[index].sets.push({
+    //   reps: action.reps,
+    //   weight: action.weight
+    // });
+    // return state_update;
 
     default:
       return state;

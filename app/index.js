@@ -24,7 +24,6 @@ ReactDOM.render(
             <Route path="/workouts" component={Workouts} />
             <Route path="/Dashboard" component={Dashboard} />
             <Route path="/workout/:id" component={WorkoutDescription} />
-
           </Main>
         </Switch>
       </div>

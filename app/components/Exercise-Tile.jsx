@@ -15,9 +15,14 @@ class ExerciseTile extends Component {
     var { dispatch } = this.props;
     var weight = this.refs.weight.value;
     var reps = this.refs.reps.value;
+    const exercise_id = e.target.attributes.id.value;
+    const workout_id = this.props.workout_id;
+    const reps_sets = {
+      reps,
+      weight
+    };
 
-    const id = e.target.attributes.id.value;
-    dispatch(actions.addExerciseDetails(id, weight, reps));
+    dispatch(actions.addSetsReps(workout_id, exercise_id, reps_sets));
 
     this.refs.weight.value = '';
     this.refs.reps.value = '';
@@ -34,7 +39,10 @@ class ExerciseTile extends Component {
 
     return (
       <div className="exercise-tile small-12 columns small-centered">
-        <h1> {this.props.name} </h1>
+        <h1>
+          {' '}{this.props.name}
+          {' '}
+        </h1>
         {this.props.sets_reps.map((detail, index) => {
           return (
             <SetReps
@@ -69,12 +77,10 @@ class ExerciseTile extends Component {
               ref="reps"
               {...reps}
             />
-            {' '}
-          </div> <button className="button tiny"> submit </button>{' '}
+          </div>
+          {' '}
+          <button className="button tiny"> submit </button>{' '}
         </form>
-        {' '}
-        {/*<div className="textHelp">{weight.touched ? weight.error : ''}</div>
-                 <div className="textHelp">{reps.touched ? reps.error : ''}</div>*/}
 
       </div>
     );

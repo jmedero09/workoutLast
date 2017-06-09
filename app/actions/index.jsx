@@ -144,6 +144,30 @@ export function createWorkout(name) {
       .catch(err => new Error(err));
   };
 }
+// /reps/:workout_id/exercise/:exercise_id
+export function addSetsReps(workout_id, exercise_id, sets) {
+  const config = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: `bearer ${localStorage.getItem('id_token')}`
+    },
+    body: `weight=${sets.weight}&reps=${sets.reps}`
+  };
+
+  return dispatch => {
+    return fetch(
+      `http://localhost:8080/api/workouts/reps/${workout_id}/exercise/${exercise_id}`,
+      config
+    )
+      .then(response => response.json())
+      .then(response => {
+        console.log(response);
+        Promise.resolve(response);
+      })
+      .catch(err => new Error(err));
+  };
+}
 
 export var addExerciseDetails = (id, weight, reps) => {
   return {
