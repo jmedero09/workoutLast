@@ -14,6 +14,7 @@ import WorkoutDescription from './components/WorkoutDescription';
 import Dashboard from './components/Dashboard';
 import * as actions from './actions';
 var store = require('./store/configureStore').configure();
+import css from './styles/app.css';
 
 ReactDOM.render(
   <Provider store={store}>
