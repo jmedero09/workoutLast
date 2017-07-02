@@ -9,10 +9,10 @@ export default class Navbar extends Component {
   render() {
     const { dispatch, isAuthenticated, errorMessage } = this.props;
     return (
-      <nav className="navbar">
-        <div className="container-fluid">
-          <div className="small-centered  small-12 columns text-center">
-            <Link to="/"><img className="logoImg" src="logo.png" /></Link>
+      <nav className="{navbar}">
+        <div className="{container-fluid}">
+          <div className="{small-centered text-center small-12 columns }">
+            <Link to="/"><img className="{logoImg}" src="logo.png" /></Link>
           </div>
 
           <div>
@@ -24,9 +24,9 @@ export default class Navbar extends Component {
             {isAuthenticated &&
               <Logout onLogoutClick={() => dispatch(logoutUser())} />}
 
-            <div>
-              <Link to="/dashboard">Dashboard</Link>
-              <Link to="/workouts">Workouts</Link>
+            <div className="btn-container">
+              <button className="button small"><Link to="/dashboard">Dashboard</Link></button>
+              <button className="button small"><Link to="/workouts">Workouts</Link></button>
             </div>
 
           </div>

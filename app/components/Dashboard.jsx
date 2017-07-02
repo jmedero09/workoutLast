@@ -30,13 +30,13 @@ class Dashboard extends Component {
     } = this.props;
 
     return (
-      <div className="{small-12 columns text-center samll-centred} ">
+      <div className="{save-workout-form small-12 columns text-center samll-centred} ">
         <form onSubmit={this.handleSubmit}>
           <input
             required
             minLength="4"
             maxLength="15"
-            className="addExerciseField text-center"
+            className="saveWorkoutField text-center"
             type="text"
             ref="addWorkout"
             placeholder="Add a Workout"

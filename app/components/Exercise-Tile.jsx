@@ -38,7 +38,7 @@ class ExerciseTile extends Component {
     } = this.props;
 
     return (
-      <div className="exercise-tile small-12 columns small-centered">
+      <div className="{exercise-tile small-12 columns small-centered}">
         <h1>
           {' '}{this.props.name}
           {' '}
@@ -55,7 +55,7 @@ class ExerciseTile extends Component {
         })}
 
         <form onSubmit={this.handleSubmit} id={this.props.exercise_id}>
-          <div className="small-4 columns small-centered">
+          <div className="{small-4 columns small-centered}">
             <label> Weight </label>
             <input
               required
@@ -67,7 +67,7 @@ class ExerciseTile extends Component {
             />
           </div>
 
-          <div className="small-4 columns small-centered">
+          <div className="{small-4 columns small-centered}">
             <label> Reps </label>
             <input
               required

@@ -1,3 +1,140 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
 body {
-  background: red;
+    /*	background-image:url('http://cdn.wallpapersafari.com/1/68/uoJ4pq.jpg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover; */
+    background-color: white;
+}
+.row{
+    max-width:100%;
+}
+.savedTitle h1 {
+    padding-top: 10px;
+}
+
+.dash-header {
+    margin-top: 30px;
+}
+
+input[type="text"].saveWorkoutField {
+    width: 70%;
+    margin-bottom: 0px;
+    display: inline;
+}
+
+
+input[type="text"].username{
+margin-top:10%;
+}
+/*input[type="text"].addReps{
+	width:50%;
+	display: inline;
+}*/
+
+.button {
+    background-color: #ed1b5c;
+    margin-top: 20px;
+    margin-right:10px;
+}
+
+.button .expanded {
+    margin-right: 5px;
+    display: block;
+    width: 50%; 
+}
+.btn-container{
+    text-align: center;
+}
+nav{
+  margin: 0 auto;
+  display: inline-block;
+  width:100%;
+  padding-top: 5%;
+}
+.exercise-tile {
+    background-color: rgba(154, 154, 154, 0.08);
+    border-top: 1px solid #ed1b5c;
+    border-bottom: 1px solid #ed1b5c;
+    width: 100%;
+    padding: 20px 0;
+}
+.exercise-tile-list{
+    list-style-type: none;
+}
+.exercise-tile-list li div{
+  margin-top:10px;
+}
+.saved-workout-container{
+  width:100%;
+}
+.saved-workout-list li{
+    list-style: none;
+    width:50%;
+    margin: 0 auto;
+}
+
+.savedTitle {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    background-color: rgba(154, 154, 154, 0.08);
+    border-top: 1px solid #ed1b5c;
+    border-bottom: 1px solid #ed1b5c;
+    padding: 20px 0;
+}
+
+.savedTitle p {
+    text-align: center;
+    font-size: 12px;
+}
+
+.savedTitle h1 {
+    font-size: 15px;
+    color:#0645AD;
+}
+form{
+    margin-top:50px;
+}
+
+.login-container {
+    margin-top: 10%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+.img-container {
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    background-color: black;
+}
+.login-container p {
+    font-weight: bolder;
+    text-align: center;
+    padding: 5px;
+    color: white;
+}
+
+.textHelp {
+    color: red;
+    padding-top: 0px;
+}
+
+.hiddenButton {
+    display: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+a {
+    text-align: center;
+    display: block;
+    color: white;
 }

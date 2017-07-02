@@ -36,7 +36,7 @@ class WorkoutDescription extends Component {
                 <ExerciseTileList exercises={this.props.workout} />}
 
             </div>
-            <div className="{small-12 columns text-center samll-centred} ">
+            <div className="small-12 columns text-center samll-centred ">
               <form onSubmit={this.handleSubmit}>
                 <input
                   required

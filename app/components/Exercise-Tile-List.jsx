@@ -9,7 +9,7 @@ class ExerciseTileList extends Component {
 
   render(props) {
     return (
-      <ul className="small-centered  small-12 columns text-center">
+      <ul className="small-centered  small-12 columns text-center exercise-tile-list">
         {this.props.workout.exercises.map((exercise, index) =>
           <li key={index}>
             <ExerciseTile

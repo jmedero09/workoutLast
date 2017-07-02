@@ -17,15 +17,15 @@ class Main extends Component {
 
     return (
       <div className="row">
-
-        <Navbar
-          isAuthenticated={isAuthenticated}
-          errorMessage={errorMessage}
-          dispatch={dispatch}
-        />
+        <div className="img-container">
+            <Navbar
+            isAuthenticated={isAuthenticated}
+            errorMessage={errorMessage}
+            dispatch={dispatch}
+            />
+        </div>
 
         {this.props.children}
-
       </div>
     );
   }

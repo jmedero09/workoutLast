@@ -7,8 +7,8 @@ class SetReps extends Component {
 
   render(props) {
     return (
-      <div className="row small-centered">
-        <div className="setreps small-12 columns">
+      <div className="{row small-centered}">
+        <div className="{setreps small-12 columns}">
           <p>
             Set
             {this.props.set}

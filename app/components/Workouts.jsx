@@ -26,8 +26,8 @@ class Workouts extends Component {
   }
   render(props) {
     return (
-      <div>
-        <ul className="small-centered  small-12 columns text-center poop">
+      <div className="saved-workout-container">
+        <ul className="saved-workout-list small-centered  small-12 columns text-center">
           <h1>Workouts component renders here</h1>
           {this.renderList()}
         </ul>

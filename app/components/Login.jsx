@@ -9,9 +9,8 @@ export default class Login extends Component {
       <div className="row">
         <div className="small-12 small-centered columns login-container">
           <p>Please Use your email and password to login to your dashboard</p>
-          <div className="row">
             <div>
-              <div className="small-11 small-centered columns">
+              <div className="small-centered small-12  columns">
                 <input
                   style={{ marginRight: '5px' }}
                   className="username text-center"
@@ -34,7 +33,6 @@ export default class Login extends Component {
               </button>
               <button className="button expanded">Create User</button>
             </div>
-          </div>
         </div>
       </div>
     );
